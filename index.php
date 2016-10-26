@@ -37,7 +37,7 @@ $message = '';
 if ($url) {
     $videofile = getFile($url, $hashfile);
     $message = 'Submitted: ' . $url . '<br>';
-    $filename = basename($url);
+    $filename = preg_replace("/[^a-zA-Z0-9]+/", "", basename($url));
     try {
         $ffmpeg = FFMpeg\FFMpeg::create();
         $video = $ffmpeg->open($videofile);
